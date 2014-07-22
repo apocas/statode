@@ -100,6 +100,7 @@ body {
   line-height: 18px;
   color: #58595b;
   background-color: #ffffff;
+  background-image: url('../images/congruent_outline.png');
 }
 a {
   color: #58595b;
@@ -1453,7 +1454,7 @@ select:focus:required:invalid:focus {
 }
 body {
   background-color: black;
-  margin: 90px auto 0;
+  margin: 75px auto 0;
 }
 .clear {
   clear: both;
@@ -1467,6 +1468,11 @@ hr {
   margin-bottom: 50px;
   text-align: center;
 }
+
+.logo a {
+  text-decoration: none;
+}
+
 .stc > * {
   width: 940px;
   margin: 0 auto;
@@ -1492,7 +1498,7 @@ hr {
   text-align: center;
 }
 .summary h2 {
-  background-color: #1a1a1a;
+  background-color: rgba(26,26,26,0.3);
   display: inline-block;
   width: auto;
   padding: 0 30px;
@@ -1528,11 +1534,21 @@ hr {
 .services li {
   display: inline-block;
   width: 240px;
-  height: 295px;
+  height: 270px;
   margin: auto;
   position: relative;
 }
 .services li h3 {
+  color: #58595b;
+
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+
+  -moz-box-shadow: inset 0 0 3px #000000;
+  -webkit-box-shadow: inset 0 0 3px #000000;
+  box-shadow: inset 0 0 3px #000000;
+
   margin: 0 auto 35px;
   background-color: white;
   font-family: 'Bitter', serif;
@@ -1564,7 +1580,7 @@ hr {
   padding: 0;
 }
 .uptime li {
-  padding: 50px 0;
+  padding: 30px 0;
   font-size: 13px;
   display: table-cell;
   border-left: 2px solid #b3b3b3;
@@ -1603,8 +1619,8 @@ hr {
   padding-left: 25px;
 }
 .uptime h3 {
+  color: #58595b;
   font-size: 14px;
-  color: black;
   text-transform: uppercase;
   font-family: 'NimbusSanNov-Bla';
   letter-spacing: 2px;
@@ -1664,39 +1680,58 @@ div.messages li.messages > .issues > div {
   clear: both;
 }
 div.messages li.issues .date {
-  color: #000;
+  color: #58595b;
   font-family: 'HelveticaNeue-Bold', 'Helvetica Neue Bold', Arial, sans-serif;
 }
 div.messages li.issues .SERVICE1.errors > div,
 div.messages li.issues .SERVICE2.errors > div,
 div.messages li.issues .SERVICE3.errors > div {
-  border-left: 8px solid #ef4135;
+  border-left: 8px solid #E77114 !important;
 }
 div.messages li.issues .SERVICE1.issues > div,
 div.messages li.issues .SERVICE2.issues > div,
 div.messages li.issues .SERVICE3.issues > div {
   border-left: 8px solid #eebd60;
 }
-div.messages li.issues:nth-child(odd) .SERVICE1.issues > div,
-div.messages li.issues:nth-child(odd) .SERVICE2.issues > div,
-div.messages li.issues:nth-child(odd) .SERVICE3.issues > div {
-  border-left: 8px solid #E7A614;
-}
-div.messages li.issues:nth-child(odd) .SERVICE1.errors > div,
-div.messages li.issues:nth-child(odd) .SERVICE2.errors > div,
-div.messages li.issues:nth-child(odd) .SERVICE3.errors > div {
-  border-left: 8px solid #f47e64;
-}
+
 div.messages .SERVICE1 .issue,
 div.messages .SERVICE2 .issue {
   min-width: 194px;
 }
+
 div.messages .issue {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
   background-color: #000;
   margin: 0 10px 10px;
-  padding: 10px;
+  padding: 9px;
   border-radius: 4px;
+  opacity: 0.7
 }
+
+div.messages [data-state="ISSUE"] {
+  border-color: #eebd60;
+
+  -moz-box-shadow: 0 0 4px #eebd60;
+  -webkit-box-shadow: 0 0 4px #eebd60;
+  box-shadow: 0 0 4px #eebd60;
+}
+div.messages [data-state="DOWN"] {
+  border-color: #E77114;
+
+  -moz-box-shadow: 0 0 4px #E77114;
+  -webkit-box-shadow: 0 0 4px #E77114;
+  box-shadow: 0 0 4px #E77114;
+}
+div.messages [data-state="UP"] {
+  border-color: green;
+
+  -moz-box-shadow: 0 0 4px green;
+  -webkit-box-shadow: 0 0 4px green;
+  box-shadow: 0 0 4px green;
+}
+
 div.messages .issue time {
   font-family: 'Bitter', serif;
   font-size: 11px;

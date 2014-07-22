@@ -12,7 +12,7 @@ var postman = new Postman(config.email);
 var handler = function(mail) {
   if(mail.from[0].address.indexOf('@' + config.authorized) > -1) {
 
-    var data = mail.subject.split('->');
+    var data = mail.subject.split(config.split);
 
     if(data.length >= 2) {
       var service = data[1].trim();
@@ -26,7 +26,7 @@ var handler = function(mail) {
         value.unshift({
           "status": status.trim().toUpperCase(), //UP, ISSUE, DOWN
           "service": service,
-          "created_at": new Date().getTime(),
+          "created_at": data[3] || new Date().getTime(),
           "message": data[0].trim()
         });
         lvl.put(stamp, value, function(err, valuep) {
@@ -47,7 +47,7 @@ app.use(bodyParser());
 app.use('/', express.static(__dirname + '/public'));
 
 app.get('/uptime', api.uptime);
-app.get('/messages', api.messages);
+app.get('/events', api.messages);
 
 var port = process.env.STATODE_PORT || 1338;
 app.listen(port, function() {

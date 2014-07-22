@@ -38,19 +38,21 @@ function getStatus(cb) {
       output[config.services[i]].status = 'UP';
       output[config.services[i]].offline = 0;
 
-      if(evs.length > 0) {
-        output[config.services[i]].status = evs[0].status;
-      }
-      var date;
-      for (var y = evs.length-1; y >= 0; y--) {
-        if(evs[y].status != 'UP') {
-          date = new Date(evs[y].created_at).getTime();
-        } else if(date !== undefined) {
-          if(evs[y].status == 'UP') {
-            var date2 = new Date(evs[y].created_at).getTime();
-            output[config.services[i]].offline += (date2 - date);
+      if(evs) {
+        if(evs.length > 0) {
+          output[config.services[i]].status = evs[0].status;
+        }
+        var date;
+        for (var y = evs.length-1; y >= 0; y--) {
+          if(evs[y].status != 'UP') {
+            date = new Date(evs[y].created_at).getTime();
+          } else if(date !== undefined) {
+            if(evs[y].status == 'UP') {
+              var date2 = new Date(evs[y].created_at).getTime();
+              output[config.services[i]].offline += (date2 - date);
+            }
+            date = undefined;
           }
-          date = undefined;
         }
       }
     }
@@ -64,9 +66,7 @@ function getEvents(cb) {
 
   async.map(config.services, function(item, callback) {
     vendors.lvls[item].get(stamp, function (err, value) {
-      var aux = {};
-      aux[item] = value;
-      callback(err, value);
+      callback(undefined, value || []);
     });
   }, function(err, results) {
     var output = {};
@@ -78,23 +78,26 @@ function getEvents(cb) {
 }
 
 function setEvents() {
+  var today = new Date();
+  var stamp = today.getFullYear() + ('0' + (today.getMonth()+1)).slice(-2);
+
   async.map(config.services, function(item, callback) {
     var ex = [
       {
         "status": "UP",
         "service": item,
-        "created_at": "2014-07-10T03:24:32Z",
-        "message": "PM: We experienced a short-lived network issue with an upstream processor.  Half a dozen authorization attempts were affected."
+        "created_at": today.getTime() + 120000,
+        "message": "Testing UP1..."
       },
       {
         "status": "ISSUE",
         "service": item,
-        "created_at": "2014-07-10T03:16:32Z",
-        "message": "We are currently experiencing card processing issues with an upstream processor"
+        "created_at": today.getTime(),
+        "message": "Testing DOWN1..."
       }
     ];
 
-    vendors.lvls[item].put('201407', ex, function (err, value) {
+    vendors.lvls[item].put(stamp, ex, function (err, value) {
       callback(err, value);
     });
   }, function(err, results){

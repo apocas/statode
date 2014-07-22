@@ -1,6 +1,5 @@
 var timer = null;
 var intervalSeconds = 30;
-var interval = 1000 * intervalSeconds;
 var SERVICES = [];
 var DISPLAYABLE_STATUSES = ['UP', 'DOWN', 'ISSUE'];
 var ERROR_STATE = 'DOWN';
@@ -35,7 +34,6 @@ var setServiceStatus = function (srv, status) {
 };
 
 var loadUptime = function () {
-  //  actual uptime of services
   SERVICES = [];
   $.get('/uptime', function (services) {
     var i = 1;
@@ -64,7 +62,7 @@ var loadUptime = function () {
 };
 
 var loadCalendar = function () {
-  $.get('/messages/', function (d) {
+  $.get('/events/', function (d) {
     var min = new Date(d.min * 1000),
     max = new Date(d.max * 1000);
 
@@ -257,17 +255,9 @@ function evenColumnHeights () {
   });
 }
 
-var Balanced = {
-  init:function (params) {
-    Status.init(params);
-  }
-};
-
-var Status = {
+var Statode = {
   init:function (params) {
     loadData();
-    timer = setInterval(loadData, interval);
+    timer = setInterval(loadData, 1000 * intervalSeconds);
   }
 };
-
-Balanced.Status = Status;
