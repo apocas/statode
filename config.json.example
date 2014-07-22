@@ -4,6 +4,8 @@
     "website",
     "network"
   ],
+  "split": "->",
+  "port": 80,
   "authorized": "mydomain.com",
   "email": {
     "user": "status@yourcompanydomain.com",

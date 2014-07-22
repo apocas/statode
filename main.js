@@ -2,7 +2,6 @@ require('colors');
 
 var express = require('express'),
   api = require('./routes/api'),
-  bodyParser = require('body-parser'),
   Postman = require('./lib/postman'),
   config = require('./config.json'),
   vendors = require('./vendors');
@@ -38,18 +37,15 @@ var handler = function(mail) {
   }
 };
 
-
 postman.start(handler);
 
-
 var app = express();
-app.use(bodyParser());
 app.use('/', express.static(__dirname + '/public'));
 
 app.get('/uptime', api.uptime);
 app.get('/events', api.messages);
 
-var port = process.env.STATODE_PORT || 1338;
+var port = config.port || 1338;
 app.listen(port, function() {
   console.log('Listening on %d'.green, port);
 });
