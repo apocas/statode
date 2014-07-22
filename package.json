@@ -1,0 +1,24 @@
+{
+  "name": "statode",
+  "version": "0.0.1",
+  "homepage": "http://abru.pt",
+  "description": "Statode",
+  "dependencies": {
+    "express": "*",
+    "colors": "*",
+    "mailparser": "~0.4.2",
+    "imap": "~0.8.10",
+    "body-parser": "~1.0.2",
+    "levelup": "~0.18.2",
+    "leveldown": "~0.10.2",
+    "level-array": "^0.1.0",
+    "async": "^0.7.0"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "Pedro Dias <petermdias@gmail.com>",
+  "maintainers": [
+    "apocas <petermdias@gmail.com>"
+  ]
+}

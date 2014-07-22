@@ -1,0 +1,18 @@
+{
+  "services": [
+    "api",
+    "website",
+    "network"
+  ],
+  "authorized": "mydomain.com",
+  "email": {
+    "user": "status@yourcompanydomain.com",
+    "password": "emailpassword",
+    "host": "mail.yourcompanydomain.com",
+    "port": 993,
+    "tls": true,
+    "tlsOptions": {
+      "rejectUnauthorized": false
+    }
+  }
+}

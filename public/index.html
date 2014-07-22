@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Statode</title>
+  <link href="//fonts.googleapis.com/css?family=Bitter:400,700,400italic" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Droid+Serif:400italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/base.css">
+</head>
+<body>
+
+  <div class="logo">
+    <a href="https://github.com/apocas/statode">
+      <img src="./static/images/logo.png" alt="Statode">
+    </a>
+  </div>
+
+  <div class="stc summary">
+    <h2>
+      <span class="as-of">Status as of</span> <time datetime="">--</time>
+    </h2>
+  </div>
+
+  <div class="services stc">
+    <ul>
+      <li class="SERVICE1">
+        <svg>
+          <path d="m 120 0 L 120 295"></path>
+        </svg>
+        <h3 class="SERVICE1_NAME"></h3>
+        <div class="uptime-image UP">
+          UP
+        </div>
+      </li>
+      <li class="SERVICE2">
+        <svg>
+          <path d="m 120 0 L 120 295"></path>
+        </svg>
+        <h3 class="SERVICE2_NAME"></h3>
+        <div class="uptime-image UP">
+          UP
+        </div>
+      </li>
+      <li class="SERVICE3">
+        <svg>
+          <path d="m 120 0 L 120 295"></path>
+        </svg>
+        <h3 class="SERVICE3_NAME"></h3>
+        <div class="uptime-image UP">
+          UP
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="uptime stc">
+    <ul>
+      <li>
+        <h3>Uptime for the<br>last 30 days</h3>
+      </li>
+
+      <li class="SERVICE1">
+        <h1>--<span>%</span></h1>
+      </li>
+
+      <li class="SERVICE2">
+        <h1>--<span>%</span></h1>
+      </li>
+
+      <li class="SERVICE3">
+        <h1>--<span>%</span></h1>
+      </li>
+    </ul>
+  </div>
+  <div class="messages stc">
+    <ul>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/vendor/strftime.js"></script>
+  <script type="text/javascript" src="/static/js/status.src.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+      Balanced.init({});
+    });
+  </script>
+
+  </body>
+  </html>
