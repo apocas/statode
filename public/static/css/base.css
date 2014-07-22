@@ -1573,7 +1573,7 @@ hr {
 }
 
 .uptime {
-  background-color: #ffffff;
+  background-color: #f7f7f7;
 }
 .uptime ul,
 .uptime li {
@@ -1782,4 +1782,20 @@ div.messages .load button:hover {
   background: #96B45B;
   border-color: #78A22F;
   box-shadow: none;
+}
+
+.footer {
+  background-color: rgb(51,51,51);
+  height:75px;
+  width: 100%;
+  text-align: center;
+}
+.powered {
+  padding-top: 20px;
+  color: whitesmoke;
+  color: rgba(255,255,255,.5);
+}
+.nodejs {
+  color: whitesmoke;
+  color: rgba(255,255,255,.5);
 }
