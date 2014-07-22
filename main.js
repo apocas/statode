@@ -9,12 +9,24 @@ var express = require('express'),
 var postman = new Postman(config.email);
 
 var handler = function(mail) {
-  if(mail.from[0].address.indexOf('@' + config.authorized) > -1) {
+  var found = false;
+  for (var i = 0; i < config.authorized.length; i++) {
+    var sender = mail.from[0].address.toLowerCase();
+    var auth = config.authorized[i].toLowerCase();
+    if(auth.indexOf('@') === 0 && sender.indexOf(auth) > -1) {
+      found = true;
+      break;
+    } else if(auth == sender) {
+      found = true;
+      break;
+    }
+  }
 
+  if(found === true) {
     var data = mail.subject.split(config.split);
 
     if(data.length >= 2) {
-      var service = data[1].trim();
+      var service = data[1].trim().toLowerCase();
       var status = data[2] || 'UP';
       var today = new Date();
       var lvl = vendors.lvls[service];
@@ -22,6 +34,7 @@ var handler = function(mail) {
 
 
       lvl.get(stamp, function (err, value) {
+        value = value || [];
         value.unshift({
           "status": status.trim().toUpperCase(), //UP, ISSUE, DOWN
           "service": service,

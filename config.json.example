@@ -6,7 +6,10 @@
   ],
   "split": "->",
   "port": 80,
-  "authorized": "mydomain.com",
+  "authorized": [
+    "johndoe@mydomain.com",
+    "@myotherdomain.com"
+  ],
   "email": {
     "user": "status@yourcompanydomain.com",
     "password": "emailpassword",
