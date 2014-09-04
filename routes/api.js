@@ -62,11 +62,17 @@ function getStatus(cb) {
 
 function getEvents(cb) {
   var today = new Date();
-  var stamp = today.getFullYear() + ('0' + (today.getMonth()+1)).slice(-2);
+  var stamp = today.getFullYear() + ('0' + (today.getMonth())).slice(-2);
+  var stamp1 = today.getFullYear() + ('0' + (today.getMonth()+1)).slice(-2);
 
   async.map(config.services, function(item, callback) {
+    var events = [];
     vendors.lvls[item].get(stamp, function (err, value) {
-      callback(undefined, value || []);
+      events = events.concat(value || []);
+      vendors.lvls[item].get(stamp1, function (err, value) {
+        events = events.concat(value || []);
+        callback(undefined, events);
+      });
     });
   }, function(err, results) {
     var output = {};
